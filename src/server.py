@@ -5,8 +5,8 @@ from flask import request, make_response
 from flask_sqlalchemy import SQLAlchemy
 from datetime import datetime as dt
 
-from .model.user import User
-from .model.post import Post
+import src.model.user as User
+import src.model.post as Post
 
 project_dir = os.path.dirname(os.path.abspath(__file__))
 database_file = "sqlite:///{}".format(os.path.join(project_dir,'..', "neolirium.db"))
