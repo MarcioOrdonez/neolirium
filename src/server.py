@@ -1,8 +1,7 @@
 import os
-import sqlite3
 
 from flask import Flask
-from flask import request, make_response
+from flask import request, make_response, session, url_for
 from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager
 from flask import render_template
@@ -18,13 +17,24 @@ database_file = "sqlite:///../neolirium.db"
 
 app = Flask(__name__)
 app.config["SQLALCHEMY_DATABASE_URI"] = database_file
+app.config['SECRET_KEY'] = '9OLWxND4o83j4K4iuopO'
+
+
 
 db = SQLAlchemy(app)
-login_manager = LoginManager()
+#login_manager = LoginManager()
+#login_manager.init_app(app)
 
 @app.route("/", methods=["GET"])
 def home():
-    post_list = post.Post.query.all()
+    post_list = post.Post.query.limit(5).all()
+    return render_template("home.html", posts=post_list)
+
+
+@app.route("/posts-<int:page>", methods=["GET"])
+def posts_page(page=1):
+    per_page = 5
+    post_list = post.Post.query.paginate(page,per_page, error_out=False).items
     return render_template("home.html", posts=post_list)
 
 @app.route("/post", methods=["GET", "POST"])
@@ -60,7 +70,14 @@ def get_users():
     return 'oi'
 
 
-
+@app.route("/login", methods=["POST","GET"])
+def login():
+    #session['username'] = request.form['username']
+    return render_template("login-template.html")
+#
+# @login_manager.user_loader
+# def load_user(username):
+#     return User.get(username)
 
 
 if __name__ == '__main__':
