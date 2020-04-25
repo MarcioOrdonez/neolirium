@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="/editor" method="POST">
+    <div class="form-group">
+        <label for="title">Article title</label>
+        <input type="text" class="form-control" name="title" id="title">
+    </div>
+    <div class="form-group">
+        <label for="body">Article body</label>
+        <textarea type="text" class="form-control" name="body" id="body" rows="3"></textarea>
+    </div>
+    <div class="form-group">
+        <label for="preview">Article preview</label>
+        <textarea type="text" class="form-control" name="preview" id="preview" rows="3"></textarea>
+    </div>
+    <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+</form>
+{% endblock %}
