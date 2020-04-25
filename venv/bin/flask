@@ -1,4 +1,4 @@
-#!/home/marcio/Code/5_semestre/lab_eng/neolorium/venv/bin/python
+#!/home/marcio/Code/neolirium/venv/bin/python
 # -*- coding: utf-8 -*-
 import re
 import sys
