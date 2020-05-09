@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block content %}
+<form action="/editor-manager" method="POST">
+    <div class="card  justify-content-between align-items-center" style="width: 40%;">
+        {% for user in users %}
+        <div class="input-group-item d-flex list-group-item-">
+            <div class="input-group-prepend ">
+                <div class="custom-radio-group-text">
+                    <input type="radio" id="user.id" name="id" value="user.id">
+                </div>
+            </div>
+                {% if user.admin %}
+                {{user.username+"(adm)"}}
+                {% endif %}
+                {% if not user.admin %}
+                {{user.username}}
+                {% endif %}
+        </div>
+            {% endfor %}
+        <p class="text-white bg-primary">Permissão de editor</p>
+        <div class="input-group center">
+            <div class="custom-control custom-radio ">
+                <input type="radio" class="custom-control-input" id="editor-true" name="editor" value="True">
+                <label class="custom-control-label" for="editor-true">Administrador</label>
+            </div>
+            <div class="custom-control custom-radio ">
+            <input type="radio" class="custom-control-input" id="editor-fasle" name="editor" value="False">
+            <label class="custom-control-label" for="editor-fasle">Nao Administrador</label>
+        </div>
+        </div>
+        <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
+    </div>
+    </form>
+{% endblock %}

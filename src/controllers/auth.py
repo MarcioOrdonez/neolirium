@@ -32,17 +32,17 @@ def signup():
 
 @module.route('/signup', methods=['POST'])
 def signup_post():
-    email = request.form.get('email')
+    user_email = request.form.get('email')
     name = request.form.get('name')
     password = request.form.get('password')
 
-    user = User.query.filter_by(email=email).first()
+    user = User.query.filter_by(email=user_email).first()
 
     if user:
         flash('Email address already exists.')
         return redirect(url_for('auth.signup'))
 
-    new_user = User(email=email, username=name, password=generate_password_hash(password, method='sha256'), admin=True, editor=True)
+    new_user = User(username=name, password=generate_password_hash(password, method='sha256'),email=user_email, admin=False)
 
     db.session.add(new_user)
     db.session.commit()
