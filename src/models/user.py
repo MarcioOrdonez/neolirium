@@ -18,12 +18,8 @@ class User(UserMixin, db.Model):
                          nullable=False)
     email = db.Column(db.String(80),
                       index=True,
-                      unique=True,
-                      nullable=False),
-    editor = db.Column(db.Boolean,
-                      index=False,
                       unique=False,
-                      nullable=False),
+                      nullable=False)
     admin = db.Column(db.Boolean,
                       index=False,
                       unique=False,

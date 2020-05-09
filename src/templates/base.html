@@ -19,7 +19,7 @@
 
 <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <a class="navbar-brand" href="#">1FilmexDia</a>
+        <a class="navbar-brand" href="#">Neolirium</a>
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup"
             aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
@@ -36,7 +36,7 @@
                 <a class="nav-item nav-link" href="{{ url_for('auth.signup') }}">Sing in</a>
                 {% endif %}
                 {% if current_user.is_authenticated %}
-                {% if current_user.editor %}
+                {% if current_user.admin %}
                 <a class="nav-item nav-link" href="{{ url_for('post.editor') }}">Write a post</a>
                 {% endif %}
                 <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">Log out</a>
