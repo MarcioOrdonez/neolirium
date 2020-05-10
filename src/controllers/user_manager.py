@@ -16,10 +16,13 @@ def manager():
 def user_manager():
     id = request.form.get('id')
     user = User.query.get(id)
-    user.admin = request.query.get('editor')
-    db.session.add()
+    if request.form.get('editor') == 'True':
+        user.admin = True
+    else:
+        user.admin = False
+    # db.session.add()
     db.session.commit()
 
-    return redirect(url_for('user_manager.manage'))
+    return redirect(url_for('user_manager.manager'))
 
 
