@@ -1,6 +1,10 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="/editor" method="POST">
+<form action="/editor" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+        <label class="form-control" for="inputFile">Choose file</label>
+        <input type="file" class="form-control" name="inputFile" id="inputFile">
+    </div>
     <div class="form-group">
         <label for="title">Article title</label>
         <input type="text" class="form-control" name="title" id="title">

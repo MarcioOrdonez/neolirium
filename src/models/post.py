@@ -31,3 +31,7 @@ class Post(db.Model):
                     index=False,
                     unique=False,
                     nullable=True)
+    image = db.Column(db.Text,
+                    index=False,
+                    unique=False,
+                    nullable=True)

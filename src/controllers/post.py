@@ -1,5 +1,6 @@
 from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
+from werkzeug.utils import secure_filename
 from ..models import Post
 from ..app import db
 
@@ -21,10 +22,13 @@ def editor_post():
     created = datetime.datetime.now()
     username = current_user.username
     email = current_user.email
+    inputFile = request.files['inputFile']
+    image = secure_filename(str(datetime.datetime.now()))+inputFile.filename
 
-    new_post = Post(title = title, body =  body, preview = preview, created = created, username = username, email = email)
+    new_post = Post(title = title, body =  body, preview = preview, created = created, username = username, email = email, image = image)
     db.session.add(new_post)
     db.session.commit()
+    inputFile.save('src/static/images/'+image)
 
     return redirect(url_for('post.post',id = new_post.id))
 
