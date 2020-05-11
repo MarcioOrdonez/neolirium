@@ -10,6 +10,11 @@
         <h5 class="card-title">{{post.title}}</h5>
         <p class="card-text">{{post.preview}}</p>
         <a href="{{url_for('post.post',id = post.id)}}" class="btn btn-primary">Read</a>
+        {% if current_user.is_authenticated %}
+        {% if current_user.admin %}
+        <a href="{{url_for('post.editor',id = post.id)}}" class="btn btn-primary">Edit</a>
+        {% endif %}
+        {% endif %}
       </div>
     </div>
   </div>
