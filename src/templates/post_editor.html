@@ -1,21 +1,21 @@
 {% extends "base.html" %}
 {% block content %}
-<form action="/creator" method="POST" enctype="multipart/form-data">
+<form action="/editor/{{post.id}}" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label class="form-control" for="inputFile">Choose file</label>
         <input type="file" class="form-control" name="inputFile" id="inputFile">
     </div>
     <div class="form-group">
         <label for="title">Article title</label>
-        <input type="text" class="form-control" name="title" id="title">
+        <input type="text" class="form-control" name="title" id="title" value="{{post.title}}">
     </div>
     <div class="form-group">
         <label for="body">Article body</label>
-        <textarea type="text" class="form-control" name="body" id="body" rows="3"></textarea>
+        <textarea type="text" class="form-control" name="body" id="body" rows="3">{{post.body}}</textarea>
     </div>
     <div class="form-group">
         <label for="preview">Article preview</label>
-        <textarea type="text" class="form-control" name="preview" id="preview" rows="3"></textarea>
+        <textarea type="text" class="form-control" name="preview" id="preview" rows="3">{{post.preview}}</textarea>
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
 </form>

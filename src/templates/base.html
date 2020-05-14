@@ -37,7 +37,7 @@
                 {% endif %}
                 {% if current_user.is_authenticated %}
                 {% if current_user.admin %}
-                <a class="nav-item nav-link" href="{{ url_for('post.editor') }}">Write a post</a>
+                <a class="nav-item nav-link" href="{{ url_for('post.creator_post') }}">Write a post</a>
                 {% endif %}
                 <a class="nav-item nav-link" href="{{ url_for('auth.logout') }}">Log out</a>
                 {% endif %}
