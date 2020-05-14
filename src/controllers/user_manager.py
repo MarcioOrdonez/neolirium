@@ -25,4 +25,14 @@ def user_manager():
 
     return redirect(url_for('user_manager.manager'))
 
+@module.route('/delete', methods=["POST"])
+@login_required
+def user_delete():
+    id = request.form.get('id')
+    user = User.query.get(id)
+    db.session.delete(user)
+    db.session.commit()
+
+    return redirect(url_for('user_manager.manager'))
+
 

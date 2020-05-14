@@ -2,7 +2,9 @@ from flask import Blueprint, render_template, request, redirect, url_for
 from flask_login import login_required, current_user
 from werkzeug.utils import secure_filename
 from ..models import Post
+from ..models import User
 from ..app import db
+from .email_handler import email_handler
 
 import datetime
 
@@ -29,6 +31,9 @@ def creator_post():
     db.session.add(new_post)
     db.session.commit()
     inputFile.save('src/static/images/'+image)
+    user_list = User.query.all()
+    email_sender = email_handler(user_list,new_post)
+    email_sender.send()
 
     return redirect(url_for('post.post',id = new_post.id))
 
@@ -59,3 +64,13 @@ def editor_post(id):
         inputFile.save('src/static/images/'+post.image)
 
         return redirect(url_for('post.post',id = post.id))
+@module.route('/delete', methods=["POST"])
+@login_required
+def delete_post(id):
+    if current_user.admin:
+        id = request.form.get('id')
+        post = Post.query.filter_by(id=id).first()
+        db.session.delete(post)
+        db.session.commit()
+
+        return redirect(url_for('main.index'))
