@@ -1,23 +1,25 @@
 {% extends "base.html" %}
 
 {% block content %}
-{% for post in posts %}
-<div class="row">
-  <div class="col-sm-6">
-    <div class="card" style="width: 18rem;">
-      <img class="card-img-top" src="{{url_for('static', filename='images/'+post.image)}}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{post.title}}</h5>
-        <p class="card-text">{{post.preview}}</p>
-        <a href="{{url_for('post.post',id = post.id)}}" class="btn btn-primary">Read</a>
+<section class="clean-block clean-info dark">
+  <div class="container">
+    {% for post in posts %}
+    <div class="row align-items-left noticias_espacamento">
+      <div class="col-md-2"><img class="img-thumbnail" src="{{url_for('static', filename='images/'+post.image)}}"></div>
+      <div class="col-md-2">
+        <h5>{{post.title}}</h5>
+        <div class="getting-started-info noticias_resumo">
+          <p>{{post.preview}}</p>
+        </div>
+        <a href="{{url_for('post.post',id = post.id)}}"><button class="btn btn-primary btn-sm" type="button" href>Ver mais</button></a>
         {% if current_user.is_authenticated %}
         {% if current_user.admin %}
-        <a href="{{url_for('post.editor',id = post.id)}}" class="btn btn-primary">Edit</a>
+        <a href="{{url_for('post.editor',id = post.id)}}"><button class="btn btn-primary btn-sm" type="button" href>Editar</button></a>
         {% endif %}
         {% endif %}
       </div>
     </div>
+    {% endfor %}
   </div>
-</div>
-{% endfor %}
+</section>
 {% endblock %}

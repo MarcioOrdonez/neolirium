@@ -1,5 +1,7 @@
-{% extends "base.html" %}
+{% extends "base_forms.html" %}
 {% block content %}
+<section class="clean-block clean-form dark">
+    <div class="container">
 <form action="/creator" method="POST" enctype="multipart/form-data">
     <div class="form-group">
         <label class="form-control" for="inputFile">Choose file</label>
@@ -19,4 +21,6 @@
     </div>
     <button class="btn btn-lg btn-primary btn-block" type="submit">Save</button>
 </form>
+</div>
+</section>
 {% endblock %}

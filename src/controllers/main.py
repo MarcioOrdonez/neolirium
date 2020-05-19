@@ -10,6 +10,8 @@ def index():
     post = Post.query.all()
     return render_template('home.html',posts = post)
 
+
+
 @module.route('/profile')
 @login_required
 def profile():

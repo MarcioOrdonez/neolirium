@@ -18,13 +18,13 @@ def login_post():
 
     user = User.query.filter_by(email=email).first()
 
-    if not user and not check_password_hash(user.password, password):
+    if not user or not check_password_hash(user.password, password):
         flash('Please check your login details and try again.')
         return redirect(url_for('auth.login'))
 
     login_user(user, remember=remember)
 
-    return redirect(url_for('main.profile'))
+    return redirect(url_for('main.index'))
 
 @module.route('/signup')
 def signup():
@@ -42,7 +42,7 @@ def signup_post():
         flash('Email address already exists.')
         return redirect(url_for('auth.signup'))
 
-    new_user = User(username=name, password=generate_password_hash(password, method='sha256'),email=user_email, admin=True)
+    new_user = User(username=name, password=generate_password_hash(password, method='sha256'),email=user_email, admin=False)
 
     db.session.add(new_user)
     db.session.commit()

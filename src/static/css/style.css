@@ -1,0 +1,36 @@
+.menu_dropdown {
+    font-weight: 600; 
+    font-size: .8rem; 
+    text-transform: uppercase; 
+    font-family: Montserrat, sans-serif;
+    padding-right: 40px;    
+}
+
+.noticias_espacamento {
+    padding: 50px;
+}
+
+.noticias_resumo {
+    font-size: 11px;
+}
+
+.copycolor {
+     color: aliceblue;
+}
+
+#banner {
+    color: rgba(231, 63, 25, 0.2);
+}
+
+#subtitulo {
+    max-width: 900px; 
+    font-style: italic;
+}
+
+#footer_fundo {
+    background-color: #3F3F3F;
+}
+
+#footer_espacamento {
+    padding: 20px 0px 0px 0px;
+}
