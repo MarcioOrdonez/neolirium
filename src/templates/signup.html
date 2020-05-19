@@ -1,23 +1,26 @@
-{% extends "base.html" %}
+{% extends "base_forms.html" %}
 
 {% block content %}
-<div>
-    {% with messages = get_flashed_messages() %}
-    {% if messages %}
-    <div class="alert alert-danger" role="alert">
-        {{ messages[0] }} Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+<section class="clean-block clean-form dark">
+    <div class="container">
+        <div class="block-heading">
+            <h2 class="text-info">Cadastre-se</h2>
+            <p>Faça seu cadastro e tenha acesso a todas as nossas notícias.</p>
+        </div>
+        {% with messages = get_flashed_messages() %}
+        {% if messages %}
+        <div class="alert alert-danger" role="alert">
+            {{ messages[0] }} Go to <a href="{{ url_for('auth.login') }}">login page</a>.
+        </div>
+        {% endif %}
+        {% endwith %}
+        <form action="/signup" method="POST">
+            <div class="form-group"><label>Nome</label><input class="form-control" type="text" name="name"></div>
+            <div class="form-group"><label>Email</label><input class="form-control" type="email" name="email"></div>
+            <div class="form-group"><label>Senha</label><input class="form-control" type="password" name="password"></div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Cadastrar</button>
+            </div>
+        </form>
     </div>
-    {% endif %}
-    {% endwith %}
-    <form action="/signup" method="POST">
-        <h1 class="h3 mb-3 font-weight-normal">Sign up</h1>
-        <label for="inputEmail" class="sr-only">Email address</label>
-        <input type="email" name="email" class="form-control" placeholder="Email address" required="" autofocus="">
-        <label for="inputEmail" class="sr-only">Name</label>
-        <input type="name" name="name" class="form-control" placeholder="Name" required="" autofocus="">
-        <label for="inputPassword" class="sr-only">Password</label>
-        <input type="password" name="password" class="form-control" placeholder="Password" required="">
-        <button class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
-    </form>
-</div>
+</section>
 {% endblock %}

@@ -1,13 +1,18 @@
-{% extends "base.html" %}
+{% extends "base_forms.html" %}
 
 {% block content %}
-<div class="row">
-    <div class="card" style="width: 50%;">
-      <img class="card-img-top" src="{{url_for('static', filename='images/'+post.image)}}" alt="Card image cap">
-      <div class="card-body">
-        <h5 class="card-title">{{post.title}}</h5>
-        <p class="card-text">{{post.body}}</p>
+<section class="clean-block clean-info dark">
+  <div class="container">
+      <div class="block-heading">
+          <h2 class="text-info">{{post.title}}</h2>
+          <img class="img-thumbnail col-md-10" src="{{url_for('static', filename='images/'+post.image)}}">
       </div>
-    </div>
-</div>
+      <div class="getting-started-info">
+          <p>{{post.body}}</p>
+      </div>
+      <div>
+          <a href="{{ url_for('main.index') }}"><button class="btn btn-primary btn-sm" type="button" href>Voltar</button></a>
+      </div>
+  </div>
+</section>
 {% endblock %}
